@@ -1,0 +1,94 @@
+:root {
+ --primary-color: red;
+ --selected-column-color: rgba(5,5,5,1);
+ --selected-column-bg-color: #a4dae6;
+ --hovering-column-color: rgba(5,5,5,1);
+ --hovering-column-bg-color: rgba(5,5,5,0.15);
+ --selected-and-hovering-column-bg-color: #97b8bf;
+
+}
+
+.table {
+  max-width: 1075px;
+  margin-right: 20px;
+  color: #333;
+}
+
+.tableLine {
+  padding-left: 15px;
+}
+
+.rt-tr:hover {
+  background: rgba(0,0,0,0.07);
+}
+
+.ct-table-colum-hover {
+}
+
+.rt-td {
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+.headerMain {
+  margin-bottom: 7px;
+  display: flex;
+  align-content: center;
+  justify-content: space-around;
+}
+
+.headerLeafContainer {
+  /* padding-top: 3px; */
+  /* padding-bottom: 3px; */
+  display: flex;
+  justify-content: space-around;
+}
+
+.headerLeaf {
+  /* width: 100%; */
+  /* padding-left: 3px; */
+  padding-top: 3px;
+  padding-bottom: 3px;
+  color: #333;
+  display: inline-block;
+  box-shadow: 0 2px 15px 0 rgba(0,0,0,0.15);
+  cursor: pointer;
+}
+
+.ct-table-header-colum-selected {
+  color: var(--selected-column-color);
+  background-color: var(--selected-column-bg-color)
+  /* padding-left: 15px; */
+}
+
+.headerLeaf.ct-table-colum-hover {
+  color: var(--selected-column-color);
+  background-color: var(--hovering-column-bg-color)
+  /* padding-left: 15px; */
+}
+
+.headerLeaf.ct-table-colum-hover.ct-table-header-colum-selected {
+  background-color: var(--selected-and-hovering-column-bg-color)
+  /* padding-left: 15px; */
+}
+
+.headerLeaf > i {
+  padding-left: 7px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.rt-td.ct-table-colum-hover {
+  color: var(--selected-column-color);
+  background-color: var(--hovering-column-bg-color)
+  /* padding-left: 15px; */
+}
+
+.pageControl {
+
+}
+
+.tableFastAdv {
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
