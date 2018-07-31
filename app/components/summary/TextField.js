@@ -158,7 +158,7 @@ class TextField extends Component {
         <div style={{maxWidth: 800}}>
           <ul>
             <li>
-              Shorter comment:
+              Shortest comment:
               <span
                 style={{
                   fontSize: 13.5,
@@ -174,7 +174,7 @@ class TextField extends Component {
                 marginBottom: 5,
               }}
             >
-              Larger comment:
+              Largest comment:
               <span
                 style={{
                   fontSize: 13.5,
@@ -186,10 +186,10 @@ class TextField extends Component {
               </span>
             </li>
             <li>
-              The next phrases are ordered by emotion probability:
+              Phrases ranked by positive emotion probability:
             </li>
             <li>
-              Begin: <ul>{positive.map((phrase, index) => (
+              Top 5: <ul>{positive.map((phrase, index) => (
                 <li key={index} style={{listStyle: 'circle'}}>
                   <span style={{fontSize: 13.5, color: '#555'}}>{phrase}</span>
                 </li>
@@ -197,7 +197,7 @@ class TextField extends Component {
               </ul>
             </li>
             <li>
-              End:
+              Bottom 5:
               <ul>{negative.map((phrase, index) => (
                 <li key={index} style={{listStyle: 'circle'}}>
                   <span style={{fontSize: 13.5, color: '#555'}}>{phrase}</span>

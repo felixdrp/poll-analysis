@@ -12,3 +12,9 @@
 .container a {
   font-size: 1.4rem;
 }
+
+.referencies {
+  font-size: small;
+  color: #555;
+  font-family: sans-serif;
+}

@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styles from './PresentSentiment.css';
-import ReactDataGrid from 'react-data-grid';
 import Phrase from '../phrase/Phrase';
 import stylesPhrase from '../phrase/Phrase.css';
 import TableScrollPage from '../table-scroll-page/TableScrollPage';

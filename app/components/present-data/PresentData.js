@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './PresentData.css';
-import ReactDataGrid from 'react-data-grid';
 import Phrase from '../phrase/Phrase';
 import stylesPhrase from '../phrase/Phrase.css';
 import TableScrollPage from '../table-scroll-page/TableScrollPage';

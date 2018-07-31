@@ -42,16 +42,30 @@ export default class MenuBuilder {
 
   buildDarwinTemplate() {
     const subMenuAbout = {
-      label: 'Electron',
+      label: '&File',
       submenu: [
-        { label: 'About ElectronReact', selector: 'orderFrontStandardAboutPanel:' },
-        { type: 'separator' },
-        { label: 'Services', submenu: [] },
-        { type: 'separator' },
-        { label: 'Hide ElectronReact', accelerator: 'Command+H', selector: 'hide:' },
-        { label: 'Hide Others', accelerator: 'Command+Shift+H', selector: 'hideOtherApplications:' },
-        { label: 'Show All', selector: 'unhideAllApplications:' },
-        { type: 'separator' },
+        {
+          label: '&Open',
+          accelerator: 'Ctrl+O',
+          click: () => {
+            dialog.showOpenDialog(
+              {
+                title: 'Open Poll CSV file',
+                filters: [
+                  {name: 'CSV', extensions: ['csv']},
+                ],
+              },
+              async callback => {
+                let [ filename ] = callback
+                // sending data to load
+                this.mainWindow.webContents.send(
+                  'LOAD_DATA',
+                  await fileToRender(filename)
+                );
+              }
+            )
+          }
+        },
         { label: 'Quit', accelerator: 'Command+Q', click: () => { app.quit(); } }
       ]
     };
@@ -93,10 +107,18 @@ export default class MenuBuilder {
     const subMenuHelp = {
       label: 'Help',
       submenu: [
-        { label: 'Learn More', click() { shell.openExternal('http://electron.atom.io'); } },
-        { label: 'Documentation', click() { shell.openExternal('https://github.com/atom/electron/tree/master/docs#readme'); } },
-        { label: 'Community Discussions', click() { shell.openExternal('https://discuss.atom.io/c/electron'); } },
-        { label: 'Search Issues', click() { shell.openExternal('https://github.com/atom/electron/issues'); } }
+        {
+          label: 'About',
+          click: () => {
+            this.mainWindow.webContents.send(
+              'GOTO',
+              '/about'
+            );
+          }
+        }, {
+          label: 'Version 1.0.0',
+          enabled: false,
+        }
       ]
     };
 
@@ -175,22 +197,11 @@ export default class MenuBuilder {
       label: 'Help',
       submenu: [{
         label: 'About',
-        click() {
-          // dialog.showMessageBox({
-          //   title: 'About',
-          //   icon: null,
-          //   message: 'Hello',
-          //   buttons: ['OK'],
-          // }, callback=> console.log(callback))
-
-          let win = new BrowserWindow({
-            width: 900, height: 500, frame: true,
-            title: 'About',
-            autoHideMenuBar: true,
-          })
-          win.loadURL(`file://${__dirname}/sites/about.html`);
-          win.show()
-
+        click: () => {
+          this.mainWindow.webContents.send(
+            'GOTO',
+            '/about'
+          );
         }
       }, {
         label: 'Version 1.0.0',

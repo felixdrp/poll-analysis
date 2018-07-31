@@ -1,0 +1,9 @@
+version: 1.0.0
+files:
+  - url: poll-study-application-1.0.0-x86_64.AppImage
+    sha512: EWDQGZ+CSw5MeYLs/BztU2Juu50lscfZQleO8eSWJSQYKelLzcBQAeMmxDis1yQelcGWv+zQXO9QwiyRecr2DQ==
+    size: 74959613
+    blockMapSize: 78913
+path: poll-study-application-1.0.0-x86_64.AppImage
+sha512: EWDQGZ+CSw5MeYLs/BztU2Juu50lscfZQleO8eSWJSQYKelLzcBQAeMmxDis1yQelcGWv+zQXO9QwiyRecr2DQ==
+releaseDate: '2018-07-31T10:33:22.362Z'

@@ -123,26 +123,36 @@ export default class Summary extends Component<Props> {
 
     // Jump first (index)
     charts = headers.slice(1).map((headerColumn, index) => {
-      let questionStars = rows.reduce((result, fila) => {
-        let value = parseInt(headerColumn.accessor(fila)) || 0
-        result[value] += 1
-        return result
-      }, new Array(6).fill(0))
+      let questionStars
+      let mean
+      let std
+      let mad
+      let data
+      let questionTotalPoints
 
-      curseStars = curseStars.map((element, index) => element + questionStars[index])
+      if (headerColumn.type != 'text') {
+        questionStars = rows.reduce((result, fila) => {
+          let value = parseInt(headerColumn.accessor(fila)) || 0
+          result[value] += 1
+          return result
+        }, new Array(6).fill(0))
 
-      const mean = questionStars.reduce((r, e, i) => r + (e * i), 0) / (rows.length - questionStars[0])
-      const std = Math.sqrt( questionStars.reduce((r, e, i) => r + (e * (i - mean) ** 2), 0) / (rows.length - questionStars[0]) )
-      const mad = questionStars.reduce((r, e, i) => r + (e * Math.abs(i - mean)), 0) / (rows.length - questionStars[0])
-      const data = questionStars.map((element, i) => ({
-        name: i,
-        data: element,
-        mean: parseFloat(mean.toFixed(2)),
-        std: parseFloat(std.toFixed(2)),
-        mad: parseFloat(mad.toFixed(2))
-      }))
+        mean = questionStars.reduce((r, e, i) => r + (e * i), 0) / (rows.length - questionStars[0])
+        std = Math.sqrt( questionStars.reduce((r, e, i) => r + (e * (i - mean) ** 2), 0) / (rows.length - questionStars[0]) )
+        mad = questionStars.reduce((r, e, i) => r + (e * Math.abs(i - mean)), 0) / (rows.length - questionStars[0])
+        data = questionStars.map((element, i) => ({
+          name: i,
+          data: element,
+          mean: parseFloat(mean.toFixed(2)),
+          std: parseFloat(std.toFixed(2)),
+          mad: parseFloat(mad.toFixed(2))
+        }))
 
-      const questionTotalPoints = questionStars.reduce((r, e, i) => r + (e * i), 0)
+        questionTotalPoints = questionStars.reduce((r, e, i) => r + (e * i), 0)
+
+        curseStars = curseStars.map((element, index) => element + questionStars[index])
+      }
+
       // Show chart
       if (!this.state.showQuestions.includes(headerColumn.header)) {
         return
@@ -214,7 +224,15 @@ export default class Summary extends Component<Props> {
       std: parseFloat(std.toFixed(2)),
       mad: parseFloat(mad.toFixed(2))
     }))
-    const maxPoints = rows.length * 8 * 5
+    const numericTypeColumn = headers.slice(1).reduce(
+      (result, headerColumn) => {
+        if (headerColumn.type == 'text') {
+          return result
+        }
+        result += 1
+        return result
+      }, 0)
+    const maxPoints = rows.length * 5 * numericTypeColumn
     const pointsTotal = curseStars.reduce((r, e, i) => r + (e * i), 0)
 
     curseCharts = (

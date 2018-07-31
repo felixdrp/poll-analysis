@@ -3,11 +3,16 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import styles from './Home.css';
+const { ipcRenderer } = require('electron');
 
 type Props = {};
 
 class Home extends Component<Props> {
   props: Props;
+
+  loadFile() {
+    ipcRenderer.send('OPEN_FILE_DIALOG', {});
+  }
 
   render() {
     return (
@@ -17,7 +22,7 @@ class Home extends Component<Props> {
             Poll Study Tool
           </h2>
           <h2>Home</h2>
-          <h3><Link to="/load">Load data</Link></h3>
+          <h3 onClick={this.loadFile}><a>Load data</a></h3>
 
           <h3>
             <Link

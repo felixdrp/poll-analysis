@@ -45,37 +45,54 @@ export default class GraphPointsByTypeStats extends Component<Props> {
     const stars = [0,1,2,3,4,5]
     let collisionTextPrevent = []
     const RADIAN = Math.PI / 180;
-    const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+    const renderCustomizedLabel = (labelVars) => {
+      let { cx, cy, midAngle, innerRadius, outerRadius, percent, index, name } = labelVars
       const getCoordinates = (rad) => {
         const radius = innerRadius + (outerRadius - innerRadius) * rad;
         return [
           cx + radius * Math.cos(-midAngle * RADIAN),
-          cy  + radius * Math.sin(-midAngle * RADIAN),
+          cy + radius * Math.sin(-midAngle * RADIAN),
         ]
       }
 
       let [x, y] = getCoordinates(1.2);
+
+      // collisionTextPrevent is reutilized multiple times
+      // Init to [] if reused
+      if (name == 0 && collisionTextPrevent.length != 0) {
+        collisionTextPrevent = []
+      }
       // Add space if it is text collision
-      collisionTextPrevent.forEach((element, index) => {
-        let [xtemp, ytemp] =  element
-        const xDiff = xtemp - x
-        const yDiff = ytemp - y
-        // collision in x axys?
-        if (Math.abs(xDiff) < 50) {
-          // collision in y axys?
-          if (Math.abs(yDiff) < 13) {
-            if (yDiff > 0) {
-              y -= (10 - yDiff) + 1
-            } else {
-              y += 10 * (1 - index) + yDiff + 2
+      collisionTextPrevent.forEach((element, elementIndex, allElements) => {
+        let [xElement, yElement] =  element
+        const xDiff = xElement - x
+        const yDiff = yElement - y
+        let findHole = 1
+        let collition = false
+        // collision in x and y axys?
+        if (Math.abs(xDiff) < 50 && Math.abs(yDiff) < 10) {
+          // console.log('x,xPrev,xDiff,Math.abs(xDiff),y,yPrev,yDiff,Math.abs(yDiff)')
+          // console.log(x,xPrev,xDiff,Math.abs(xDiff),y,yPrev,yDiff,Math.abs(yDiff))
+          if (yDiff > 0) {
+            y = y - (10 - yDiff) + 1
+          } else {
+            // Distance with previous is bigger than next one.
+            if (elementIndex == 0 && Math.abs(yElement - allElements[allElements.length - 1][1]) > 20) {
+              findHole = -1
             }
+
+            do {
+              y = y - findHole
+              // No tropieza con otro
+              collition = allElements.find(element => {
+                let [ex, ey] = element
+                return Math.abs(ex - x) < 50 && Math.abs(ey - y) < 10
+              })
+            } while (collition)
           }
         }
       })
       collisionTextPrevent.push([x, y])
-
-
-      // debugger
 
       return (
         <React.Fragment>
@@ -90,14 +107,10 @@ export default class GraphPointsByTypeStats extends Component<Props> {
           >
           	{`${index}: ${(percent * 100).toFixed(0)}%`}
           </text>
-          {/* <text x={x2} y={y2} fill="#777" textAnchor={x > cx ? 'start' : 'end'} 	dominantBaseline="central">
-            {`${index}`}
-          </text> */}
         </React.Fragment>
       );
     };
 
-// debugger
     return (
       <React.Fragment>
         <div
@@ -158,18 +171,6 @@ export default class GraphPointsByTypeStats extends Component<Props> {
           }}
         >
           <PieChart width={250} height={200}>
-            {/* <Pie
-              data={data01}
-              dataKey='value'
-              cx={150}
-              cy={150}
-              innerRadius={80}
-              outerRadius={100}
-              fill="#82ca9d"
-              label={renderCustomizedLabel}
-              labelLine={false}
-              nameKey="name"
-            /> */}
             <Pie
               data={data}
               dataKey='data'

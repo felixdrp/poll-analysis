@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { push } from 'react-router-redux'
 import { bindActionCreators } from 'redux';
 import { AppContainer } from 'react-hot-loader';
 import Root from './containers/Root';
@@ -7,24 +8,12 @@ import { configureStore, history } from './store/configureStore';
 import './app.global.css';
 
 const { ipcRenderer } = require('electron');
-const geetha = require('../../emotion/data/Geetha Selvaretnam.json');
-const lynn = require('../../emotion/data/Lynn Bradley.json');
-const store = configureStore({poll: {geetha, lynn}});
+
+const store = configureStore({poll: {}});
 var data = require('./redux/data');
 import extractInfo from './tools/extractInfo';
 
 const loadData = bindActionCreators(data.creators.load, store.dispatch)
-
-// API call to the backend to analyse the data.
-ipcRenderer.send('analyzePoll', {
-  data: geetha,
-  name: 'geetha'
-});
-
-ipcRenderer.send('analyzePoll', {
-  data: lynn,
-  name: 'lynn'
-});
 
 // API responses:
 // will save analysed data to the store.
@@ -51,6 +40,10 @@ ipcRenderer.on('LOAD_DATA', (event, props) => {
       },
       filtered_analysed: analysed,
   })
+});
+// GOTO.
+ipcRenderer.on('GOTO', (event, props) => {
+  store.dispatch(push(props))
 });
 
 render(

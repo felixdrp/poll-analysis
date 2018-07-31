@@ -21,7 +21,6 @@ const apiCall = (type, data) => {
       // API response will save analysed data to the store.
       responseAPICall = new Promise((resolve, reject) => {
         ipcRenderer.on('analyzed', (event, props) => {
-          console.log('recived analysed!!!');
           resolve(props)
         });
       })
