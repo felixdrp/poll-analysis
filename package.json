@@ -45,7 +45,7 @@
     ]
   },
   "build": {
-    "productName": "ElectronReact",
+    "productName": "StudentOpinionMiner",
     "appId": "org.develar.ElectronReact",
     "files": [
       "dist/",

@@ -19,7 +19,7 @@ class Home extends Component<Props> {
       <div>
         <div className={styles.container} data-tid="container">
           <h2 style={{marginLeft: '58px', color: '#888'}}>
-            Poll Study Tool
+            Student Opinion Miner
           </h2>
           <h2>Home</h2>
           <h3 onClick={this.loadFile}><a>Load data</a></h3>

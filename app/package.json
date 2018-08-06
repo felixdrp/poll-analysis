@@ -1,8 +1,8 @@
 {
-  "name": "poll-study-application",
-  "productName": "poll-study-application",
+  "name": "student-opinion-miner-application",
+  "productName": "student-opinion-miner-application",
   "version": "1.0.0",
-  "description": "Poll study application",
+  "description": "Student Opinion Miner Application",
   "main": "./main.prod.js",
   "author": {
     "name": "felixdrp",
