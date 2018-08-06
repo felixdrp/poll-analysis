@@ -66,6 +66,15 @@ export default class MenuBuilder {
             )
           }
         },
+        { type: 'separator' },
+        {
+          label: '&Print',
+          accelerator: 'Ctrl+P',
+          click: () => {
+            this.mainWindow.webContents.print()
+          }
+        },
+        { type: 'separator' },
         { label: 'Quit', accelerator: 'Command+Q', click: () => { app.quit(); } }
       ]
     };
@@ -159,7 +168,17 @@ export default class MenuBuilder {
             }
           )
         }
-      }, {
+      },
+      { type: 'separator' },
+      {
+        label: '&Print',
+        accelerator: 'Ctrl+P',
+        click: () => {
+          this.mainWindow.webContents.print()
+        }
+      },
+      { type: 'separator' },
+      {
         label: '&Close',
         accelerator: 'Ctrl+W',
         click: () => {
