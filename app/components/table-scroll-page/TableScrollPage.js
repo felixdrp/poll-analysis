@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
 import styles from './Table.css';
-import reactStringReplace from 'react-string-replace'
 // import {forEach, interval, take, fromIter, map, filter, pipe, subscribe} from 'callbag-basics'
 import timer from 'timer-total'
 import TableHeader from './TableHeader';

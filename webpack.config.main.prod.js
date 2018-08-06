@@ -14,6 +14,8 @@ CheckNodeEnv('production');
 export default merge.smart(baseConfig, {
   devtool: 'source-map',
 
+  mode: 'production',
+
   target: 'electron-main',
 
   entry: './app/main.dev',
@@ -23,14 +25,19 @@ export default merge.smart(baseConfig, {
     filename: './app/main.prod.js'
   },
 
-  plugins: [
-    new UglifyJSPlugin({
-      parallel: true,
-      sourceMap: true
-    }),
+  optimization: {
+    minimizer: [
+      new UglifyJSPlugin({
+        parallel: true,
+        sourceMap: true
+      })
+    ]
+  },
 
+  plugins: [
     new BundleAnalyzerPlugin({
-      analyzerMode: process.env.OPEN_ANALYZER === 'true' ? 'server' : 'disabled',
+      analyzerMode:
+        process.env.OPEN_ANALYZER === 'true' ? 'server' : 'disabled',
       openAnalyzer: process.env.OPEN_ANALYZER === 'true'
     }),
 
@@ -57,5 +64,5 @@ export default merge.smart(baseConfig, {
   node: {
     __dirname: false,
     __filename: false
-  },
+  }
 });

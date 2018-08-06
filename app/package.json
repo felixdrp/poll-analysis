@@ -15,12 +15,6 @@
   },
   "license": "MIT",
   "dependencies": {
-    "csv-parse": "^2.5.0",
-    "form-analysis": "github:felixdrp/form-analysis",
-    "react": "^16.4.1",
-    "react-dock": "^0.2.4",
-    "react-icons": "^2.2.7",
-    "redux": "^4.0.0",
-    "redux-arc": "^0.7.3"
+    "form-analysis": "github:felixdrp/form-analysis"
   }
 }

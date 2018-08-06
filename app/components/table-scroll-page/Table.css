@@ -1,11 +1,10 @@
 :root {
- --primary-color: red;
- --selected-column-color: rgba(5,5,5,1);
- --selected-column-bg-color: #a4dae6;
- --hovering-column-color: rgba(5,5,5,1);
- --hovering-column-bg-color: rgba(5,5,5,0.15);
- --selected-and-hovering-column-bg-color: #97b8bf;
-
+  --primary-color: red;
+  --selected-column-color: rgba(5, 5, 5, 1);
+  --selected-column-bg-color: #a4dae6;
+  --hovering-column-color: rgba(5, 5, 5, 1);
+  --hovering-column-bg-color: rgba(5, 5, 5, 0.15);
+  --selected-and-hovering-column-bg-color: #97b8bf;
 }
 
 .table {
@@ -19,7 +18,7 @@
 }
 
 .rt-tr:hover {
-  background: rgba(0,0,0,0.07);
+  background: rgba(0, 0, 0, 0.07);
 }
 
 .ct-table-colum-hover {
@@ -51,24 +50,24 @@
   padding-bottom: 3px;
   color: #333;
   display: inline-block;
-  box-shadow: 0 2px 15px 0 rgba(0,0,0,0.15);
+  box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.15);
   cursor: pointer;
 }
 
 .ct-table-header-colum-selected {
   color: var(--selected-column-color);
-  background-color: var(--selected-column-bg-color)
+  background-color: var(--selected-column-bg-color);
   /* padding-left: 15px; */
 }
 
 .headerLeaf.ct-table-colum-hover {
   color: var(--selected-column-color);
-  background-color: var(--hovering-column-bg-color)
+  background-color: var(--hovering-column-bg-color);
   /* padding-left: 15px; */
 }
 
 .headerLeaf.ct-table-colum-hover.ct-table-header-colum-selected {
-  background-color: var(--selected-and-hovering-column-bg-color)
+  background-color: var(--selected-and-hovering-column-bg-color);
   /* padding-left: 15px; */
 }
 
@@ -80,12 +79,11 @@
 
 .rt-td.ct-table-colum-hover {
   color: var(--selected-column-color);
-  background-color: var(--hovering-column-bg-color)
+  background-color: var(--hovering-column-bg-color);
   /* padding-left: 15px; */
 }
 
 .pageControl {
-
 }
 
 .tableFastAdv {
