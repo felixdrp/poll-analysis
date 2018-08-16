@@ -1,9 +1,9 @@
-version: 1.0.0
+version: 1.1.0
 files:
-  - url: poll-study-application-1.0.0-x86_64.AppImage
-    sha512: EWDQGZ+CSw5MeYLs/BztU2Juu50lscfZQleO8eSWJSQYKelLzcBQAeMmxDis1yQelcGWv+zQXO9QwiyRecr2DQ==
-    size: 74959613
-    blockMapSize: 78913
-path: poll-study-application-1.0.0-x86_64.AppImage
-sha512: EWDQGZ+CSw5MeYLs/BztU2Juu50lscfZQleO8eSWJSQYKelLzcBQAeMmxDis1yQelcGWv+zQXO9QwiyRecr2DQ==
-releaseDate: '2018-07-31T10:33:22.362Z'
+  - url: student-opinion-miner-application-1.1.0-x86_64.AppImage
+    sha512: +5pq9YTb8XpCLTVhwipwHKVr0ziKkWkfVdZKo4HIKND1B5bwI8DkfEE3Hi/fXCuNzF3bjelUdY91K0/c+lXkEQ==
+    size: 74025864
+    blockMapSize: 79052
+path: student-opinion-miner-application-1.1.0-x86_64.AppImage
+sha512: +5pq9YTb8XpCLTVhwipwHKVr0ziKkWkfVdZKo4HIKND1B5bwI8DkfEE3Hi/fXCuNzF3bjelUdY91K0/c+lXkEQ==
+releaseDate: '2018-08-16T11:34:46.507Z'
