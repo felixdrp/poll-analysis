@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
 import styles from './Phrase.css';
+const reactStringReplace = require('react-string-replace')
 
 export default class Phrase extends Component<Props> {
   props: Props;
@@ -58,7 +59,7 @@ export default class Phrase extends Component<Props> {
         >
           P {phraseId}
         </span>
-        <span
+        {/* <span
           className={[
             styles.emotion,
             emotion.score >= 0? styles.emotionPositive: styles.emotionNegative
@@ -66,7 +67,7 @@ export default class Phrase extends Component<Props> {
           title="Emotion"
         >
           E {emotion.comparative.toFixed(3)} {emotionOveral}
-        </span>
+        </span> */}
 
         {
           reactStringReplace(phrase,
