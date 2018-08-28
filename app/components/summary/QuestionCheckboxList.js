@@ -10,7 +10,7 @@ const QuestionCheckboxList = ({
     return
   }
 
-  const showAll = questions.map((question)=>question.header)
+  const showAll = questions.map((question) => question.title)
 
   return (
     <div>
@@ -33,15 +33,15 @@ const QuestionCheckboxList = ({
       {
         questions && questions.map((question)=>{
           const title = question.title
-          const header = question.header
+          const header = question.header || title
 
           // debugger
           return (
             <li key={title}>
               <input
                 type="checkbox"
-                checked={showQuestions.includes(header)}
-                onChange={()=>setShowQuestions(header)}
+                checked={showQuestions.includes(title)}
+                onChange={()=>setShowQuestions(title)}
               />
               {title}
             </li>

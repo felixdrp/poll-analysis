@@ -154,7 +154,7 @@ export default class Summary extends Component<Props> {
       }
 
       // Show chart
-      if (!this.state.showQuestions.includes(headerColumn.header)) {
+      if (!this.state.showQuestions.includes(headerColumn.title)) {
         return
       }
       if (headerColumn.type == 'text') {
