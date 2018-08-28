@@ -1,7 +1,7 @@
 // @flow
 import { app, Menu, shell, BrowserWindow, dialog } from 'electron';
 import fileToRender from './tools/fileToRender';
-const VERSION_CODE = '1.1.0'
+const VERSION_CODE = '1.1.1'
 
 export default class MenuBuilder {
   mainWindow: BrowserWindow;
