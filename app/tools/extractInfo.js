@@ -39,32 +39,44 @@ const extractInfo = (data) => {
    // Removing two first columns (course, courseCode) and lastone (Consent)
    for (let column=2; column < columns.length - 1; column++) {
      let type = 'numeric'
-     let desc = columns[column].description
+     let element = columns[column]
+     let desc = element.description
      let header = '';
+     const columnData = data.map(e => e[column]).slice(1)
 
      // Summarize the titles. From long to short titles.
-     (desc.includes('explained')
-       && (header = 'Explained well')) ||
-     (desc.includes('stimulating')
-       && (header = 'Stimulating')) ||
-     (desc.includes('overall quality')
-       && (header = 'Overall quality')) ||
-     (desc.includes('What was good')
-       && (header = 'What was good?', type = 'text')) ||
-     (desc.includes('course be improved')
-       && (header = 'How to improve?', type = 'text')) ||
-     (desc.includes('understood what is expected')
-       && (header = 'Understood expected')) ||
-     (desc.includes('course met my expectations')
-       && (header = 'Course met expectations')) ||
-     (desc.includes('The criteria used')
-       && (header = 'Criteria clear')) ||
-     (desc.includes('would recommend')
-       && (header = 'Would recommend')) ||
-     (desc.includes('tutorials helped')
-       && (header = 'Tutorials helped')) ||
-     (desc.includes('I give consent')
-       && (header = 'Consent'))
+     if (desc == 'Teaching staff explained things well') {
+       header = 'Staff explained well'
+     } else if (desc == 'The course was intellectually stimulating') {
+       header = 'Stimulating'
+     } else if (desc == 'I am satisfied with the overall quality of the course') {
+       header = 'Overall quality'
+     } else if (desc == 'What was good about the course?') {
+       header = 'What was good?'
+       type = 'text'
+     } else if (desc == 'How could this course be improved?') {
+       header = 'How to improve?'
+       type = 'text'
+     } else if (desc == 'I understood what is expected of me in this course') {
+       header = 'Understood what expected'
+     } else if (desc == 'The course met my expectations') {
+       header = 'Course met expectations'
+     } else if (desc == 'The criteria used in marking have been made clear in advance') {
+       header = 'Criteria clear'
+     } else if (desc == 'I would recommend this course to other students') {
+       header = 'Would recommend'
+     } else if (desc == 'The tutorials helped me gain deeper understanding of the subject') {
+       header = 'Tutorials helped'
+     } else if (desc == 'I give consent') {
+       header = 'Consent'
+     } else {
+       header = desc
+       // Check type!
+       // Mean of column data length. If 1 or less is 'numeric' else 'text'
+       type = (columnData.reduce((t, e) => t + e.length, 0) / columnData.length) <= 1
+         ? 'numeric'
+         : 'text'
+     }
 
      headers.push({
        header: header,
