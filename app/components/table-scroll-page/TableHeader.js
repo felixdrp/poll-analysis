@@ -45,12 +45,12 @@ export default class Tableheader extends Component<Props> {
 
         switch (i.type) {
           case 'text':
-            classNameAsc =  'fa fa-sort-alpha-asc fa-1x'
-            classNameDesc = 'fa fa-sort-alpha-desc fa-1x'
+            classNameAsc =  'fa fa-sort-alpha-down fa-1x'
+            classNameDesc = 'fa fa-sort-alpha-up fa-1x'
             break;
           case 'numeric':
-            classNameAsc =  'fa fa-sort-numeric-asc fa-1x'
-            classNameDesc = 'fa fa-sort-numeric-desc fa-1x'
+            classNameAsc =  'fa fa-sort-numeric-down fa-1x'
+            classNameDesc = 'fa fa-sort-numeric-up fa-1x'
             break;
           default:
         }
